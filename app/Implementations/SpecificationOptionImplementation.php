@@ -106,6 +106,7 @@ class SpecificationOptionImplementation implements Model
         $attribute = [	
 			'id'
 			,'name'
+            ,'dress_id'
             ,'description'
             ,'specification_id'
             ,'option_id'

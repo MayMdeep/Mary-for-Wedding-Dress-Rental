@@ -52,12 +52,6 @@ class DressImplementation implements Model
             $query = $query->where('rental_price', $data['rental_price']);
         }
 
-        if (array_key_exists('specification_id', $data)) {
-            $query = $query->where('specification_id', $data['specification_id']);
-        }
-        if (array_key_exists('option_id', $data)) {
-            $query = $query->where('option_id', $data['option_id']);
-        }
 
         if (array_key_exists('orderBy', $data)) {
             $query = $query->orderBy($data['orderBy'], 'DESC');
@@ -124,8 +118,6 @@ class DressImplementation implements Model
 			'id'
 			,'name'
             ,'description'
-            ,'specification_id'
-            ,'option_id'
             ,'quantity'
             ,'image'
             ,'rental_price'

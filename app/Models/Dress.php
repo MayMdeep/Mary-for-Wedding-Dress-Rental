@@ -10,8 +10,8 @@ class Dress extends Model
 {
     use HasFactory, SoftDeletes;
     
-    public function sizes()
+    public function specifications()
     {
-        return $this->belongsToMany(Size::class);
+        return $this->belongsToMany(Specification::class)->withPivot('option_id');
     }
 }
