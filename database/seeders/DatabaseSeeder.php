@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\SizeSeeder;
 use Database\Seeders\DressSeeder;
+use Database\Seeders\SpecificationSeeder;
+use Database\Seeders\SpecificationOptionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +20,9 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            SizeSeeder::class,
+            
+            SpecificationSeeder::class,
+            SpecificationOptionSeeder::class,
             DressSeeder::class,
         ]);
     }
