@@ -1,4 +1,10 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeders;
 use Illuminate\Database\Seeder;
+
 use App\Models\Dress;
 use App\Models\Size;
 
@@ -11,7 +17,7 @@ class DressSeeder extends Seeder
         $dresses = [
             [
                 'name' => 'Elegant White Dress',
-                'image' => 'images/dress1.jpg',
+                'image' => 'images/White-Dress.png',
                 'description' => 'A beautiful elegant white dress perfect for weddings.',
                 'size_id' => $sizes->random()->id,
                 'quantity' => 10,
@@ -19,13 +25,12 @@ class DressSeeder extends Seeder
             ],
             [
                 'name' => 'Classic Black Dress',
-                'image' => 'images/dress2.jpg',
+                'image' => 'images/black-dress.png',
                 'description' => 'A classic black dress suitable for formal events.',
                 'size_id' => $sizes->random()->id,
                 'quantity' => 5,
                 'rental_price' => 120.00,
             ],
-            // Add more dresses as needed
         ];
 
         foreach ($dresses as $dress) {
