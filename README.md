@@ -65,39 +65,47 @@ This project is a web application for renting wedding dresses. It allows users t
 
 ### Prerequisites
 - PHP 8.0 or higher
+- Laravel 11
 - Composer
 - MySQL or any other supported database
 
 ### Steps
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/wedding-dress-rental.git
+   git clone https://github.com/maymdeep/wedding-dress-rental.git
    cd wedding-dress-rental
 
 Install dependencies
-composer install
+
+    composer install
 
 Copy the .env file
-cp .env.example .env
+
+    cp .env.example .env
 
 Generate application key
-php artisan key:generate
+
+    php artisan key:generate
 
 Configure the .env file Update the database configuration in the .env file:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_database_username
-DB_PASSWORD=your_database_password
+
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=your_database_name
+        DB_USERNAME=your_database_username
+        DB_PASSWORD=your_database_password
 
 Run migrations and seeders
-php artisan migrate --seed
+
+    php artisan migrate --seed
 
 Serve the application
-php artisan serve
 
-API Endpoints
+    php artisan serve
+
+
+### API Endpoints
 Authentication
 Register: POST /api/register
 Login: POST /api/login
@@ -112,29 +120,7 @@ Reservations
 Create Reservation: POST /api/reservations (requires authentication)
 View Reservations: GET /api/reservations (requires authentication)
 Cancel Reservation: DELETE /api/reservations/{id} (requires authentication)
-Design Patterns
+### Design Patterns
 Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
 Repository Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
-Contributing
-Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
-For any questions or inquiries, please contact your-email@example.com.
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
