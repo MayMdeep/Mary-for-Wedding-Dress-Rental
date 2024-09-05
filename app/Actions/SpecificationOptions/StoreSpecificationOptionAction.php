@@ -34,6 +34,7 @@ class StoreSpecificationOptionAction
         return [
             'name' => ['required','unique:specification_options,name'],
             'specification_id' => ['required', 'exists:specifications,id'],
+            'added_price'=>['required','numeric']
 
         ];
     }

@@ -17,13 +17,10 @@ class SpecificationOptionResource extends JsonResource
     public function toArray(Request $request): array
     {
         $result = [
-            'id' => (int)$this->id
-            ,'name'=>(string) $this->name,
-            'specification_id'=>(int)$this->specification_id
-            ,'added_price'=>(int) $this->added_price
-            ,'created_at'=> $this->created_at
-			,'updated_at'=> $this->updated_at
-			,'deleted_at'=> $this->deleted_at
+            'id' => (int)$this->id,
+            'specification_name'=>(string)$this->specification->name,
+            'name'=>(string) $this->name,
+            'added_price'=>(int) $this->added_price
 
         ];
     

@@ -19,10 +19,6 @@ class SpecificationResource extends JsonResource
         $result = [
             'id' => (int)$this->id,
             'name'=>(string)$this->name
-            ,'created_at'=> $this->created_at
-			,'updated_at'=> $this->updated_at
-			,'deleted_at'=> $this->deleted_at
-
         ];
     
         return $result;
