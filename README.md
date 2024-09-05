@@ -82,7 +82,10 @@ Serve the application
 - Create Reservation: POST /api/reservations (requires authentication)
 - View Reservations: GET /api/reservations (requires authentication)
 - Cancel Reservation: DELETE /api/reservations/{id} (requires authentication)
-**Design Patterns**
+
+
+### Design Patterns
+
 Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
 Repository Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
 
