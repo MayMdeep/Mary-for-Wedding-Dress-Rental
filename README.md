@@ -40,26 +40,23 @@ This project is a web application for renting wedding dresses. It allows users t
    git clone https://github.com/maymdeep/wedding-dress-rental.git
    cd wedding-dress-rental
 
-Install dependencies
-
+2. **Install dependencies**
+    ```bash
     composer install
 
-Copy the .env file
-
+3. **Copy the .env file**
+    ```bash
     cp .env.example .env
 
-Generate application key
 
-    php artisan key:generate
-
-Configure the .env file Update the database configuration in the .env file:
+5. **Configure the .env file Update the database configuration in the .env file:**
 
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
-        DB_DATABASE=your_database_name
-        DB_USERNAME=your_database_username
-        DB_PASSWORD=your_database_password
+        DB_DATABASE=mary
+        DB_USERNAME=your_database_username(root)
+        DB_PASSWORD=your_database_password(usually empty)
 
 Run migrations and seeders
 
@@ -71,21 +68,21 @@ Serve the application
 
 
 ### API Endpoints
-Authentication
-Register: POST /api/register
-Login: POST /api/login
-Logout: POST /api/logout (requires authentication)
-Dresses
-List Dresses: GET /api/dresses
-View Dress Details: GET /api/dresses/{id}
-Create Dress: POST /api/dresses (requires authentication)
-Update Dress: PUT /api/dresses/{id} (requires authentication)
-Delete Dress: DELETE /api/dresses/{id} (requires authentication)
-Reservations
-Create Reservation: POST /api/reservations (requires authentication)
-View Reservations: GET /api/reservations (requires authentication)
-Cancel Reservation: DELETE /api/reservations/{id} (requires authentication)
-### Design Patterns
+- Authentication
+- Register: POST /api/register
+- Login: POST /api/login
+- Logout: POST /api/logout (requires authentication)
+**Dresses**
+- List Dresses: GET /api/dresses
+- View Dress Details: GET /api/dresses/{id}
+- Create Dress: POST /api/dresses (requires authentication)
+- Update Dress: PUT /api/dresses/{id} (requires authentication)
+- Delete Dress: DELETE /api/dresses/{id} (requires authentication)
+**Reservations**
+- Create Reservation: POST /api/reservations (requires authentication)
+- View Reservations: GET /api/reservations (requires authentication)
+- Cancel Reservation: DELETE /api/reservations/{id} (requires authentication)
+**Design Patterns**
 Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
 Repository Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
 
