@@ -58,12 +58,12 @@ This project is a web application for renting wedding dresses. It allows users t
         DB_USERNAME=your_database_username(root)
         DB_PASSWORD=your_database_password(usually empty)
 
-Run migrations and seeders
+6. **Run migrations and seeders**
+   ```bash
+     php artisan migrate --seed
 
-    php artisan migrate --seed
-
-Serve the application
-
+7. **Serve the application**
+    ```bash
     php artisan serve
 
 
