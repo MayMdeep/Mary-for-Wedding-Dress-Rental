@@ -23,7 +23,7 @@ class DressResource extends JsonResource
             'image' => $this->image,
             'rental_price' => (double)$this->rental_price,
             'options' => SpecificationOptionResource::collection($this->options),
-            // 'specifications' => SpecificationResource::collection($this->specifications),
+            'specifications' => SpecificationResource::collection($this->specifications),
             'quantity' => (int)$this->quantity,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

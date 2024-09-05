@@ -25,22 +25,6 @@ class UpdateReservationAction
 
     public function handle(array $data, int $id)
     {
-        if (array_key_exists('file', $data)) {
-            $data['photo'] = UploadImageAction::run($data['file'], ImageDimensions::BLOG_IMAGE);
-        }
-
-        if (array_key_exists('languages', $data)) {
-            foreach ($data['languages'] as $key => $lang) {
-                foreach ($lang as $translationKey => $translation) {
-                    UpdateTranslationAction::run([
-                        'text_type' => $translationKey,
-                        'value' => $translation,
-                    ], (int) $key);
-                }
-
-            }
-        }
-
         $reservation = $this->reservation->Update($data, $id);
         return new ReservationResource($reservation);
     }

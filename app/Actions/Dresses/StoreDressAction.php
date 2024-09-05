@@ -1,26 +1,33 @@
 <?php
 namespace App\Actions\Dresses;
 
-use Lorisleiva\Actions\Concerns\AsAction;
-use Lorisleiva\Actions\ActionRequest;
-use Illuminate\Validation\Validator;
-use Illuminate\Http\Request;
-use App\Traits\Response;
-use App\Models\Dress;
-use App\Implementations\DressImplementation;
-use App\Http\Resources\DressResource;
-
 use Hash;
+use App\Models\Dress;
+use App\Traits\Response;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
+use App\Http\Resources\DressResource;
+use Lorisleiva\Actions\ActionRequest;
+use Lorisleiva\Actions\Concerns\AsAction;
+
+use App\Implementations\DressImplementation;
+use App\Implementations\SpecificationImplementation;
+use App\Implementations\SpecificationOptionImplementation;
+
 class StoreDressAction
 {
     use AsAction;
     use Response;
     private $dress;
+    private $specification_option;
+    private $specification;
+
     
-    function __construct(DressImplementation $DressImplementation)
+    function __construct(DressImplementation $DressImplementation,SpecificationOptionImplementation $SpecificationOptionImplementation, SpecificationImplementation $SpecificationImplementation)
     {
-        
+        $this->specification_option= $SpecificationOptionImplementation;
         $this->dress = $DressImplementation;
+        $this->specification= $SpecificationImplementation;
     }
 
     public function handle(array $data)
@@ -31,8 +38,21 @@ class StoreDressAction
             $image->storeAs('public/photos', $imageName);
             $data["image"] = 'photos/' . $imageName;
         }
+        
 
         $dress = $this->dress->Create($data);
+        $options = [];
+        if (array_key_exists('options', $data)) {
+            $options = $data['options'];
+            unset($data['options']);
+        }
+
+        if (!empty($options)) {
+            foreach ($options as $specName => $specOptionId) {
+                $specification = $this->specification->getList(['name', $specName])->first();
+                $dress->specifications()->attach($specification->id, ['option_id' => $specOptionId]);
+            }
+        }
         return new DressResource($dress);
     }
     public function rules()
@@ -43,7 +63,8 @@ class StoreDressAction
             'description' => ['required'],
             'file' => ['required'],
             'quantity' => ['required', 'numeric', 'min:1'],
-            'options' => ['required','exists:specification_options,id'],
+            'options' => ['required'],
+            'options.*' => ['required','exists:specification_options,id'],
         ];
     }
     public function withValidator(Validator $validator, ActionRequest $request)
