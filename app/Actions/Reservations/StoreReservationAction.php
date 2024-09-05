@@ -1,31 +1,37 @@
 <?php
 namespace App\Actions\Reservations;
 
-use App\Helpers\ImageDimensions;
-use Lorisleiva\Actions\Concerns\AsAction;
-use Lorisleiva\Actions\ActionRequest;
-use Illuminate\Validation\Validator;
-use Illuminate\Http\Request;
+use Hash;
 use App\Traits\Response;
 use App\Models\Reservation;
-use App\Implementations\ReservationImplementation;
+use Illuminate\Http\Request;
+use App\Helpers\ImageDimensions;
+use Illuminate\Validation\Validator;
+use Lorisleiva\Actions\ActionRequest;
+use Lorisleiva\Actions\Concerns\AsAction;
 use App\Http\Resources\ReservationResource;
 
-use Hash;
+use App\Implementations\DressImplementation;
+use App\Implementations\ReservationImplementation;
+
 class StoreReservationAction
 {
     use AsAction;
     use Response;
     private $reservation;
+    private $dress;
 
-    function __construct(ReservationImplementation $ReservationImplementation)
+    function __construct(ReservationImplementation $ReservationImplementation, DressImplementation $DressImplementation)
     {
         $this->reservation = $ReservationImplementation;
+        $this->dress = $DressImplementation;
     }
 
     public function handle(array $data)
     {
-        
+        // update the dress availabilty 
+        $this->dress->Update(['availability'=>1],$data['dress_id']);
+        // create reservation
         $reservation = $this->reservation->Create($data);
         return new ReservationResource($reservation);
     }

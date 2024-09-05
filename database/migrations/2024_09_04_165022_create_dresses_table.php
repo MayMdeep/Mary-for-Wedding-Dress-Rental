@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->text('description');
+            $table->integer('availability')->default(1);
             $table->integer('quantity')->nullable();
             $table->decimal('rental_price', 8, 2);
             $table->softDeletes();

@@ -21,6 +21,7 @@ class DressResource extends JsonResource
             'name' => (string) $this->name,
             'description' => (string) $this->description,
             'image' => $this->image,
+            'availability' => (int)$this->availability,
             'rental_price' => (double)$this->rental_price,
             'options' => SpecificationOptionResource::collection($this->options),
             'specifications' => SpecificationResource::collection($this->specifications),

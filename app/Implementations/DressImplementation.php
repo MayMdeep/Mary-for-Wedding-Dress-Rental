@@ -45,6 +45,9 @@ class DressImplementation implements Model
             $query = $query->where('description', $data['description']);
         }
 
+        if (array_key_exists('availability', $data)) {
+            $query = $query->where('availability', $data['availability']);
+        }
         if (array_key_exists('quantity', $data)) {
             $query = $query->where('quantity', $data['quantity']);
         }
@@ -119,6 +122,7 @@ class DressImplementation implements Model
 			,'name'
             ,'description'
             ,'quantity'
+            ,'availability'
             ,'image'
             ,'rental_price'
             ,'created_at'
