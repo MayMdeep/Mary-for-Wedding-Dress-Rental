@@ -17,7 +17,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ## Project Overview
 This project is a web application for renting wedding dresses. It allows users to browse available dresses, view detailed information, make reservations, and manage their accounts. The application is built using Laravel and follows best practices for design patterns and code organization.
-I've this project as a test for Voila company - task description attached in files
+I've done this project as a test for Voila company - task description attached in files
+I guarantee that I developed the complete project from scratch
 
 ## Features
 - **Homepage**: Display a list of available wedding dresses with images, names, and rental prices.
