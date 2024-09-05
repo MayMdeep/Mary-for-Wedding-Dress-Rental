@@ -1,22 +1,23 @@
 <?php
-namespace App\Actions\Balances;
+namespace App\Actions\Permissions;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Traits\Response;
-use App\Implementations\BalanceTypeImplementation;
-use App\Http\Resources\BalanceTypeResource;
+use App\Implementations\PermissionImplementation;
+use App\Http\Resources\PermissionResource;
 use Hash;
-class GetBalanceTypesListAction
+class GetPermissionListAction
 {
+     
     use AsAction;
     use Response;
-    private $balanceType;
+    private $permission;
     
-    function __construct(BalanceTypeImplementation $BalanceTypeImplementation)
+    function __construct(PermissionImplementation $permissionImplementation)
     {
-        $this->balanceType = $BalanceTypeImplementation;
+        $this->permission = $permissionImplementation;
     }
 
     public function handle(array $data = [], int $perPage = 10)
@@ -24,7 +25,7 @@ class GetBalanceTypesListAction
         if (!is_numeric($perPage))
             $perPage = 10;
         
-        return BalanceTypeResource::collection($this->balanceType->getPaginatedList($data, $perPage));
+        return PermissionResource::collection($this->permission->getPaginatedList($data, $perPage));
     }
     public function rules()
     {
@@ -34,8 +35,9 @@ class GetBalanceTypesListAction
 
     public function asController(Request $request)
     {
-        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('balance.get'))
+        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('permission.get'))
             return $this->sendError('Forbidden',[],403);
+
         $list = $this->handle($request->all(),  $request->input('results', 10));
         
         return $this->sendPaginatedResponse($list,'');

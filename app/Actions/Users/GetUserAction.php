@@ -26,11 +26,6 @@ class GetUserAction
 
     public function handle(int $id)
     {
-        if (auth('sanctum')->check()) {
-            $blockedExists = $this->blockedUser->getList(['blocked_exists' => [auth('sanctum')->user()->id, $id]])->first();
-            if (!is_null($blockedExists)) return throw new NotFoundHttpException('not_found');
-        }
-
         return new UserResource($this->user->getOne($id));
     }
     public function rules()

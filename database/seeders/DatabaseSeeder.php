@@ -6,9 +6,12 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Database\Seeders\SizeSeeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\AdminSeeder;
 use Database\Seeders\DressSeeder;
+use Database\Seeders\PermissionSeeder;
 use Database\Seeders\SpecificationSeeder;
+use Database\Seeders\PermissionRoleSeeder;
 use Database\Seeders\SpecificationOptionSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +23,10 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            
+            AdminSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            PermissionRoleSeeder::class,
             SpecificationSeeder::class,
             SpecificationOptionSeeder::class,
             DressSeeder::class,
