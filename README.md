@@ -86,6 +86,6 @@ This project is a web application for renting wedding dresses. It allows users t
 
 ### Design Patterns
 
-Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
-Repository Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
+- Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
+- Implementation Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
 
