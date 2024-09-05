@@ -11,56 +11,83 @@
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+# Wedding Dress Rental System
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Project Overview
+This project is a web application for renting wedding dresses. It allows users to browse available dresses, view detailed information, make reservations, and manage their accounts. The application is built using Laravel and follows best practices for design patterns and code organization.
+I've done this project as a test for Voila company - task description attached in files
+I guarantee that I developed the complete project from scratch
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Features
+- **Homepage**: Display a list of available wedding dresses with images, names, and rental prices.
+- **Dress Detail Page**: Show detailed information about the selected dress, including description, size availability, and rental price.
+- **Reservation System**: Allow users to select a dress, choose a rental duration, and confirm the reservation. Users can view their reservation history on their account page.
+- **User Authentication**: Implement user authentication using Laravel's built-in authentication system. Users can register, log in, and log out.
+- **User Account Page**: Users can view and manage their reservations, edit profile information, and change passwords.
+- **Dynamic Specifications**: Admins can add and manage dress specifications and options dynamically.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+### Prerequisites
+- PHP 8.0 or higher
+- Laravel 11
+- Composer
+- MySQL or any other supported database
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Steps
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/maymdeep/wedding-dress-rental.git
+   cd wedding-dress-rental
 
-### Premium Partners
+2. **Install dependencies**
+    ```bash
+    composer install
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. **Copy the .env file**
+    ```bash
+    cp .env.example .env
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Configure the .env file Update the database configuration in the .env file:**
 
-## Code of Conduct
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=mary
+        DB_USERNAME=your_database_username(root)
+        DB_PASSWORD=your_database_password(usually empty)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Run migrations and seeders**
+   ```bash
+     php artisan migrate --seed
 
-## Security Vulnerabilities
+7. **Serve the application**
+    ```bash
+    php artisan serve
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+### API Endpoints
+- Authentication
+- Register: POST /api/register
+- Login: POST /api/login
+- Logout: POST /api/logout (requires authentication)
+**Dresses**
+- List Dresses: GET /api/dresses
+- View Dress Details: GET /api/dresses/{id}
+- Create Dress: POST /api/dresses (requires authentication)
+- Update Dress: PUT /api/dresses/{id} (requires authentication)
+- Delete Dress: DELETE /api/dresses/{id} (requires authentication)
+**Reservations**
+- Create Reservation: POST /api/reservations (requires authentication)
+- View Reservations: GET /api/reservations (requires authentication)
+- Cancel Reservation: DELETE /api/reservations/{id} (requires authentication)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### Design Patterns
+
+- Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
+- Implementation Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
+
