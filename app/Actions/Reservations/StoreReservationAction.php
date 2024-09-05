@@ -23,6 +23,7 @@ class StoreReservationAction
 
     function __construct(ReservationImplementation $ReservationImplementation, DressImplementation $DressImplementation)
     {
+        $data['user_id']= auth('sanctum')->user()->id;
         $this->reservation = $ReservationImplementation;
         $this->dress = $DressImplementation;
     }
@@ -40,7 +41,7 @@ class StoreReservationAction
         return [
             'rental_duration' => ['required'],
             'reservation_date' => ['required'],
-            'user_id' => ['required', 'exists:users,id'],
+            // 'user_id' => ['required', 'exists:users,id'],
             'dress_id' => ['required', 'exists:dresses,id'],
         ];
     }
