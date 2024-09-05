@@ -7,7 +7,7 @@ use App\Actions\Translations\GetModelDetailedTranslationsAction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DressResource extends JsonResource
+class SpecificationOptionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,14 +17,14 @@ class DressResource extends JsonResource
     public function toArray(Request $request): array
     {
         $result = [
-            'id' => (int)$this->id,
-            'name' => (string) $this->name,
-            'description' => (string) $this->description,
-            'image' => $this->image,
-            'rental_price' => (double)$this->rental_price,
-            'quantity' => (int)$this->quantity,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'id' => (int)$this->id
+            ,'name'=>(string) $this->name,
+            'specification_id'=>(int)$this->specification_id
+            ,'added_price'=>(int) $this->added_price
+            ,'created_at'=> $this->created_at
+			,'updated_at'=> $this->updated_at
+			,'deleted_at'=> $this->deleted_at
+
         ];
     
         return $result;

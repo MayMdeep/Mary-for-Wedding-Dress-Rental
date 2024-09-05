@@ -24,17 +24,6 @@ class UpdateDressAction
 
     public function handle(array $data, int $id)
     {
-        if (array_key_exists('languages', $data)) {
-            foreach ($data['languages'] as $key => $lang) {
-                foreach ($lang as $translationKey => $translation) {
-                    UpdateTranslationAction::run([
-                        'text_type' => $translationKey,
-                        'value' => $translation,
-                    ], (int) $key);
-                }
-
-            }
-        }
 
         $dress = $this->dress->Update($data, $id);
         return new DressResource($dress);
@@ -42,9 +31,7 @@ class UpdateDressAction
     public function rules(Request $request)
     {
         return [
-            'product_id' => ['required', 'exists:products,id'],
-            'from_date' => ['date'],
-            'to_date' => ['date'],
+            'name' => ['unique:dresses,name,' . $request->route('id')],
         ];
     }
     public function withValidator(Validator $validator, ActionRequest $request)

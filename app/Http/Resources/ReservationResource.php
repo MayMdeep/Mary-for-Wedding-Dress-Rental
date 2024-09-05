@@ -7,7 +7,7 @@ use App\Actions\Translations\GetModelDetailedTranslationsAction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DressResource extends JsonResource
+class ReservationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,13 +18,14 @@ class DressResource extends JsonResource
     {
         $result = [
             'id' => (int)$this->id,
-            'name' => (string) $this->name,
-            'description' => (string) $this->description,
-            'image' => $this->image,
-            'rental_price' => (double)$this->rental_price,
-            'quantity' => (int)$this->quantity,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'user_id'=>(int)$this->user_id
+            ,'dress_id'=>(int) $this->dress_id
+            ,'rental_duration'=> $this->rental_duration
+            ,'reservation_date'=> (string)$this->reservation_date
+            ,'created_at'=> $this->created_at
+			,'updated_at'=> $this->updated_at
+			,'deleted_at'=> $this->deleted_at
+
         ];
     
         return $result;

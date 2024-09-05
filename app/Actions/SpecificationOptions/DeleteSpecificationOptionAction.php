@@ -1,27 +1,27 @@
 <?php
-namespace App\Actions\Blogs;
+namespace App\Actions\SpecificationOptions;
 
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Traits\Response;
-use App\Implementations\BlogImplementation;
+use App\Implementations\SpecificationOptionImplementation;
 use Hash;
-class DeleteBlogAction
+class DeleteSpecificationOptionAction
 {
     use AsAction;
     use Response;
-    private $blog;
+    private $specificationOption;
     
-    function __construct(BlogImplementation $BlogImplementation)
+    function __construct(SpecificationOptionImplementation $specificationOptionImplementation)
     {
-        $this->blog = $BlogImplementation;
+        $this->specificationOption = $specificationOptionImplementation;
     }
 
     public function handle(int $id)
     {
-        return $this->blog->delete($id);
+        return $this->specificationOption->delete($id);
     }
     public function rules()
     {
@@ -35,10 +35,10 @@ class DeleteBlogAction
     {
         try{
     
-            if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('blog.delete'))
+            if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('specificationOption.delete'))
             return $this->sendError('Forbidden',[],403);
             $this->handle($id);
-            return $this->sendResponse(['Success'], 'Blog Deleted successfully.');
+            return $this->sendResponse(['Success'], 'specificationOption Deleted successfully.');
         
 		}catch (\Exception $e) {
             return $this->sendError($e->getMessage());
@@ -46,3 +46,4 @@ class DeleteBlogAction
 		}
     }
 }
+

@@ -121,13 +121,15 @@ class DressImplementation implements Model
             ,'quantity'
             ,'image'
             ,'rental_price'
-			
+            ,'created_at'
+			,'updated_at'
+			,'deleted_at'
         ];
 
         foreach ($attribute as $val) {
             if (array_key_exists($val, $data)) {
                  {
-                    $model->$val = $data[$val];
+                    $this->dress->$val = $data[$val];
                 }
             }
         }

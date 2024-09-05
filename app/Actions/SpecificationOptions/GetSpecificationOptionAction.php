@@ -1,27 +1,27 @@
 <?php
-namespace App\Actions\Blogs;
+namespace App\Actions\SpecificationOptions;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Traits\Response;
-use App\Implementations\BlogImplementation;
-use App\Http\Resources\BlogResource;
+use App\Implementations\SpecificationOptionImplementation;
+use App\Http\Resources\SpecificationOptionResource;
 use Hash;
-class GetBlogAction
+class GetSpecificationOptionAction
 {
     use AsAction;
     use Response;
-    private $blog;
+    private $specificationOption;
     
-    function __construct(BlogImplementation $BlogImplementation)
+    function __construct(SpecificationOptionImplementation $SpecificationOptionImplementation)
     {
-        $this->blog = $BlogImplementation;
+        $this->specificationOption = $SpecificationOptionImplementation;
     }
 
     public function handle(int $id)
     {
-        return new BlogResource($this->blog->getOne($id));
+        return new SpecificationOptionResource($this->specificationOption->getOne($id));
     }
     public function rules()
     {
@@ -31,7 +31,7 @@ class GetBlogAction
 
     public function asController(int $id)
     {
-        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('blog.get'))
+        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('specificationOption.get'))
             return $this->sendError('Forbidden',[],403);
 
         $record = $this->handle($id);

@@ -3,21 +3,21 @@
 namespace App\Implementations;
 
 use App\Interfaces\Model;
-use App\Models\SpecificationOption;
+use App\Models\Reservation;
 
-class SpecificationOptionImplementation implements Model
+class ReservationImplementation implements Model
 {
-    private $specificationOption;
+    private $reservation;
 
     public function __construct()
     {
-        $this->specificationOption = new SpecificationOption();
+        $this->reservation = new Reservation();
     }
 
     public function resolveCriteria($data = [])
     {
 
-        $query = SpecificationOption::Query();
+        $query = Reservation::Query();
 
         if (array_key_exists('columns', $data)) {
             $query = $query->select($data['columns']);
@@ -31,18 +31,32 @@ class SpecificationOptionImplementation implements Model
             $query = $query->where('name', 'like', '%' . $data['keywords'] . '%');
         }
 
-        if (array_key_exists('name', $data)) {
-            $query = $query->where('name', $data['name']);
+        if (array_key_exists('dress_id', $data)) {
+            $query = $query->where('dress_id', $data['dress_id']);
         }
         if (array_key_exists('id', $data)) {
             $query = $query->where('id', $data['id']);
         }
 
-        if (array_key_exists('specification_id', $data)) {
-            $query = $query->where('specification_id', $data['specification_id']);
+        if (array_key_exists('user_id', $data)) {
+            $query = $query->where('user_id', $data['user_id']);
         }
-        if (array_key_exists('added_price', $data)) {
-            $query = $query->where('added_price', $data['added_price']);
+        if (array_key_exists('rental_duration', $data)) {
+            $query = $query->where('rental_duration', $data['rental_duration']);
+        }
+
+        if (array_key_exists('reservation_date', $data)) {
+            $query = $query->where('reservation_date', $data['reservation_date']);
+        }
+        if (array_key_exists('created_at', $data)) {
+            $query = $query->where('created_at', $data['created_at']);
+        }
+        if (array_key_exists('updated_at', $data)) {
+            $query = $query->where('updated_at', $data['updated_at']);
+        }
+
+        if (array_key_exists('deleted_at', $data)) {
+            $query = $query->where('deleted_at', $data['deleted_at']);
         }
 
         if (array_key_exists('orderBy', $data)) {
@@ -51,14 +65,13 @@ class SpecificationOptionImplementation implements Model
             $query = $query->orderBy('id', 'DESC');
         }
 
-
         return $query;
     }
 
     public function getOne($id)
     {
-        $specificationOption = SpecificationOption::findOrFail($id);
-        return $specificationOption;
+        $reservation = Reservation::findOrFail($id);
+        return $reservation;
     }
 
     public function getList($data)
@@ -79,13 +92,13 @@ class SpecificationOptionImplementation implements Model
 
     public function Update($data = [], $id)
     {
-        $this->specificationOption = $this->getOne($id);
+        $this->reservation = $this->getOne($id);
 
         $this->mapDataModel($data);
 
-        $this->specificationOption->save();
+        $this->reservation->save();
 
-        return $this->specificationOption;
+        return $this->reservation;
     }
 
     public function Create($data = [])
@@ -93,9 +106,9 @@ class SpecificationOptionImplementation implements Model
 
         $this->mapDataModel($data);
 
-        $this->specificationOption->save();
+        $this->reservation->save();
 
-        return $this->specificationOption;
+        return $this->reservation;
     }
     public function Delete($id)
     {
@@ -108,17 +121,19 @@ class SpecificationOptionImplementation implements Model
     {
         $attribute = [	
 			'id'
-			,'name'
-            ,'specification_id'
-            ,'option_id'
-            ,'added_price'
-			
+			,'user_id'
+            ,'dress_id'
+            ,'rental_duration'
+            ,'reservation_date'
+            ,'created_at'
+			,'updated_at'
+			,'deleted_at'
         ];
 
         foreach ($attribute as $val) {
             if (array_key_exists($val, $data)) {
                  {
-                    $this->specificationOption->$val = $data[$val];
+                    $this->reservation->$val = $data[$val];
                 }
             }
         }

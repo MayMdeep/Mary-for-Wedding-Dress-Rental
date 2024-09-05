@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('specification_options', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('added_price')->default(0);
             $table->foreignId('specification_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

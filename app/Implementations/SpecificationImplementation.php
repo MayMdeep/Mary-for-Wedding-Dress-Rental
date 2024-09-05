@@ -105,7 +105,7 @@ class SpecificationImplementation implements Model
         foreach ($attribute as $val) {
             if (array_key_exists($val, $data)) {
                {
-                    $model->$val = $data[$val];
+                    $this->specification->$val = $data[$val];
                 }
             }
         }

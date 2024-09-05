@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('quantity')->nullable();
             $table->decimal('rental_price', 8, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

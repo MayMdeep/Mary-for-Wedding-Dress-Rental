@@ -1,27 +1,27 @@
 <?php
-namespace App\Actions\Blogs;
+namespace App\Actions\Reservations;
 
 use App\Actions\Translations\UpdateTranslationAction;
 use App\Actions\Uploads\UploadImageAction;
 use App\Helpers\ImageDimensions;
-use App\Http\Resources\BlogResource;
-use App\Implementations\BlogImplementation;
-use App\Models\Blog;
+use App\Http\Resources\ReservationResource;
+use App\Implementations\ReservationImplementation;
+use App\Models\Reservation;
 use App\Traits\Response;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class UpdateBlogAction
+class UpdateReservationAction
 {
     use AsAction;
     use Response;
-    private $blog;
+    private $reservation;
 
-    function __construct(BlogImplementation $BlogImplementation)
+    function __construct(ReservationImplementation $ReservationImplementation)
     {
-        $this->blog = $BlogImplementation;
+        $this->reservation = $ReservationImplementation;
     }
 
     public function handle(array $data, int $id)
@@ -42,13 +42,13 @@ class UpdateBlogAction
             }
         }
 
-        $blog = $this->blog->Update($data, $id);
-        return new BlogResource($blog);
+        $reservation = $this->reservation->Update($data, $id);
+        return new ReservationResource($reservation);
     }
     public function rules(Request $request)
     {
         return [
-            'name' => ['unique:blogs,name,' . $request->route('id')],
+            'name' => ['unique:reservations,name,' . $request->route('id')],
         ];
     }
     public function withValidator(Validator $validator, ActionRequest $request)
@@ -58,12 +58,12 @@ class UpdateBlogAction
     public function asController(Request $request, int $id)
     {
 
-        if (auth('sanctum')->check() && !auth('sanctum')->user()->has_permission('blog.edit')) {
+        if (auth('sanctum')->check() && !auth('sanctum')->user()->has_permission('reservation.edit')) {
             return $this->sendError('Forbidden', [], 403);
         }
 
-        $blog = $this->handle($request->all(), $id);
+        $reservation = $this->handle($request->all(), $id);
 
-        return $this->sendResponse($blog, '');
+        return $this->sendResponse($reservation, '');
     }
 }

@@ -1,30 +1,31 @@
 <?php
-namespace App\Actions\Blogs;
+namespace App\Actions\Reservations;
+
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Traits\Response;
-use App\Implementations\BlogImplementation;
-use App\Http\Resources\BlogResource;
+use App\Implementations\ReservationImplementation;
+use App\Http\Resources\ReservationResource;
 use Hash;
-class GetBlogListAction
+class GetReservationListAction
 {
     use AsAction;
     use Response;
-    private $blog;
+    private $reservation;
     
-    function __construct(BlogImplementation $BlogImplementation)
+    function __construct(ReservationImplementation $ReservationImplementation)
     {
-        $this->blog = $BlogImplementation;
+        $this->reservation = $ReservationImplementation;
     }
 
-    public function handle(array $data = [], int $perBlog = 10)
+    public function handle(array $data = [], int $perPage = 10)
     {
-        if (!is_numeric($perBlog))
-            $perBlog = 10;
+        if (!is_numeric($perPage))
+            $perPage = 10;
         
-        return BlogResource::collection($this->blog->getPaginatedList($data, $perBlog));
+        return ReservationResource::collection($this->reservation->getPaginatedList($data, $perPage));
     }
     public function rules()
     {
@@ -34,7 +35,7 @@ class GetBlogListAction
 
     public function asController(Request $request)
     {
-        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('blog.get'))
+        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('reservation.get'))
             return $this->sendError('Forbidden',[],403);
 
         $list = $this->handle($request->all(),  $request->input('results', 10));

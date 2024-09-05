@@ -19,37 +19,31 @@ class StoreDressAction
     
     function __construct(DressImplementation $DressImplementation)
     {
+        
         $this->dress = $DressImplementation;
     }
 
     public function handle(array $data)
     {
-        $dress = $this->dress->Create($data);
-
-        foreach($data['languages'] as $key => $lang)
-        {
-            foreach($lang as $translationKey => $translation)
-            {
-                StoreTranslationAction::run([
-                    'language_id' => $key,
-                    'type' => Dress::class,
-                    'type_id' => $dress->id,
-                    'text_type' => $translationKey,
-                    'value' => $translation,
-                ]);
-            }
-
+        if (array_key_exists('file', $data)) {
+            $image = $data['file'];
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/photos', $imageName);
+            $data["image"] = 'photos/' . $imageName;
         }
+
+        $dress = $this->dress->Create($data);
         return new DressResource($dress);
     }
     public function rules()
     {
         return [
-            'product_id' => ['required', 'exists:products,id'],
-            'price' => ['required'],
-            'from_date' => ['required', 'date'],
-            'to_date' => ['required', 'date'],
-            'languages' => ['required'],
+            'name' => ['required'],
+            'rental_price' => ['required'],
+            'description' => ['required'],
+            'file' => ['required'],
+            'quantity' => ['required', 'numeric', 'min:1'],
+            'options' => ['required','exists:specification_options,id'],
         ];
     }
     public function withValidator(Validator $validator, ActionRequest $request)
@@ -58,8 +52,8 @@ class StoreDressAction
 
     public function asController(Request $request)
     {
-        if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('dress.add'))
-            return $this->sendError('Forbidden',[],403);
+        // if(auth('sanctum')->check() &&  !auth('sanctum')->user()->has_permission('dress.add'))
+        //     return $this->sendError('Forbidden',[],403);
 
         $dress = $this->handle($request->all());
 
