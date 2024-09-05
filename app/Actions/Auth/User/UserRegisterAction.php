@@ -1,7 +1,6 @@
 <?php
 namespace App\Actions\Auth\User;
 
-use App\Actions\Uploads\UploadImageAction;
 use App\Actions\UserPasswords\StoreUserPasswordAction;
 use App\Helpers\ImageDimensions;
 use App\Implementations\UserImplementation;

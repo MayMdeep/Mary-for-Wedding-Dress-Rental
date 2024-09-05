@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
-use App\Actions\Uploads\UploadImageAction;
 use App\Implementations\UserImplementation;
 use App\Http\Resources\UserResource;
 use App\Actions\Auth\CheckIfPasswordRepeatedAction;

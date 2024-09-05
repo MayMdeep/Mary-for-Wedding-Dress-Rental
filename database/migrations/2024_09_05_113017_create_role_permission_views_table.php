@@ -30,6 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('role_permission_views');
+    DB::statement('DROP VIEW IF EXISTS role_permission_views');
+
     }
 };

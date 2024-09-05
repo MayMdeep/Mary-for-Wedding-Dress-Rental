@@ -10,7 +10,6 @@ use App\Models\Specification;
 use App\Implementations\SpecificationImplementation;
 use App\Http\Resources\SpecificationResource;
 use App\Actions\Translations\UpdateTranslationAction;
-use App\Actions\Uploads\UploadImageAction;
 use Hash;
 class UpdateSpecificationAction
 {

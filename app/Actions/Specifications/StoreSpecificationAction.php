@@ -9,8 +9,7 @@ use App\Traits\Response;
 use App\Models\Specification;
 use App\Implementations\SpecificationImplementation;
 use App\Http\Resources\SpecificationResource;
-use App\Actions\Translations\StoreTranslationAction;
-use App\Actions\Uploads\UploadImageAction;
+
 use Hash;
 class StoreSpecificationAction
 {

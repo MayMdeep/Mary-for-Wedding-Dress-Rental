@@ -2,7 +2,6 @@
 namespace App\Actions\Reservations;
 
 use App\Actions\Translations\UpdateTranslationAction;
-use App\Actions\Uploads\UploadImageAction;
 use App\Helpers\ImageDimensions;
 use App\Http\Resources\ReservationResource;
 use App\Implementations\ReservationImplementation;

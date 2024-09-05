@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use App\Http\Resources\AdminResource;
 use Lorisleiva\Actions\ActionRequest;
-use App\Actions\Photos\StorePhotoAction;
 use Lorisleiva\Actions\Concerns\AsAction;
-use App\Actions\Uploads\UploadImageAction;
 use App\Implementations\AdminImplementation;
 use App\Actions\Auth\CheckIfPasswordRepeatedAction;
-use App\Actions\AdminPasswords\StoreAdminPasswordAction;
 
 class UpdateAdminAction
 {

@@ -10,7 +10,6 @@ use App\Models\Role;
 use App\Implementations\RoleImplementation;
 use App\Http\Resources\RoleResource;
 use App\Actions\Translations\UpdateTranslationAction;
-use App\Actions\Uploads\UploadImageAction;
 use Hash;
 class UpdateRoleAction
 {

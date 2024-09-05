@@ -113,4 +113,7 @@ Route::group(['prefix' => 'reservations'], function () {
     Route::delete('{id}', DeleteReservationAction::class);
     Route::put('', StoreReservationAction::class);
 });
-
+Route::group(['prefix'=>'balances'], function(){
+    Route::put('', StoreBalanceAction::class);
+    Route::get('', GetBalanceListByUserAction::class);
+});

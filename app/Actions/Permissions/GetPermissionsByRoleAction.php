@@ -12,7 +12,6 @@ use App\Implementations\PermissionImplementation;
 use App\Implementations\RoleImplementation ;
 use App\Http\Resources\PermissionResource;
 use App\Actions\Translations\UpdateTranslationAction;
-use App\Actions\Uploads\UploadImageAction;
 use Hash;
 class GetPermissionsByRoleAction
 {

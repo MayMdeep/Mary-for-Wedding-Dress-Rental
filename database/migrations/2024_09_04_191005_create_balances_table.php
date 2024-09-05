@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('balances', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->integer('user_id')->nullable()->index();
+            $table->integer('to_user_id')->nullable();
+            $table->float('amount', 0, 0)->nullable();
+            $table->integer('move_type')->nullable()->index();
+            $table->integer('active')->nullable()->index();
         });
     }
 
