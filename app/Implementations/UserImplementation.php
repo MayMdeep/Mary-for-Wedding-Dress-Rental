@@ -122,99 +122,21 @@ class UserImplementation implements Model
     {
         $attribute = [	
 			'id'
+            ,'name'
+            ,'email'
+            ,'role_id'
 			,'username'
 			,'password'
-			,'type'
-			,'lang'
-			,'Ins'
-			,'Upd'
-			,'del'
-			,'rep'
-			,'country_id'
-			,'email'
-			,'first_name'
-			,'last_name'
-			,'phone'
-			,'address'
-			,'location'
-			,'dob'
-			,'sex'
-			,'city' 
-			,'created_at'
-			,'updated_at'
-			,'remember_token'
-			,'mobile'
-			,'login_date'
-			,'is_active'
-			,'salary_updated'
-			,'ip' 
-			,'validation_code'
-			,'verified'
-			,'father_name' 
-			,'mother_name' 
-			,'personal_number' 
-			,'constraint' 
-			,'id_region'
-			,'grant_date'
-			,'heir_name'
-			,'birth_country_id'
-			,'birth_city'
-			,'birth_region'
-			,'shipping_country_id'
-			,'shipping_city'
-			,'shipping_region'
-			,'shipping_street'
-			,'region'
-			,'street'
-			,'position'
-			,'safe_password' 
-			,'user_type'
-			,'week'
-			,'id_photo_f'
-			,'id_photo_b'
-			,'e_card'
-			,'product_id'
-			,'pid'
-			,'user_level'
-			,'old_vault'
-			,'old_user'
-			,'st'
-			,'email1'
-			,'E_card_Reason'
-			,'User_Reason'
-			,'user_block_date'
-			,'E_Card_block_date'
-			,'birthplace'
-			,'email_1'
-			,'item_id'
-			,'year'
-			,'office_id'
-			,'lang'
-			,'left_id'
-			,'right_id'
-			,'left'
-			,'right'
-			,'leftG'
-			,'rightG'
-			,'is_promoted'
-			,'escluded'
-			,'blocked'
-			,'pick'
-			,'startup'
-			,'promotion_year'
-			,'promotion_week'
+            ,'profile_image'
+		
         ];
 
         foreach ($attribute as $val) {
             if (array_key_exists($val, $data)) {
                 if ($val == 'password') {
-                    $model->$val = bcrypt($data[$val]);
-                } elseif ($val=='email1')
-                {
-                    //$model->username = $data[$val];
-                    $model->email1 = $data[$val];
+                    $this->user->$val = bcrypt($data[$val]);
                 }else {
-                    $model->$val = $data[$val];
+                    $this->user->$val = $data[$val];
                 }
             }
         }

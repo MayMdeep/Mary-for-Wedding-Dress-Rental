@@ -1,5 +1,5 @@
 <?php
-namespace App\Actions\Auth;
+namespace App\Actions\Auth\Admin;
 use App\Traits\Response;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
@@ -21,11 +21,6 @@ class SetForgettenPasswordAction
 
     public function handle(array $data)
     {
-        if(CheckIfPasswordRepeatedAction::run($data['password'], $data['user_id'])){
-            return[false,'old_password'];
-        }
-        StoreUserPasswordAction::run(['user_id'=>$data['user_id'],'password'=> $data['password']]);
-
         return [true,$this->user->update(['password'=>$data['password']],$data['user_id'])];
     }
     public function rules()

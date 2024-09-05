@@ -1,6 +1,5 @@
 <?php
 namespace App\Actions\Users;
-use App\Implementations\BlockedUserImplementation;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Validation\Validator;
@@ -18,10 +17,9 @@ class GetUserAction
     private $user;
     private $blockedUser;
 
-    function __construct(UserImplementation $UserImplementation, BlockedUserImplementation $blockedUserImplementation)
+    function __construct(UserImplementation $UserImplementation)
     {
         $this->user = $UserImplementation;
-        $this->blockedUser = $blockedUserImplementation;
     }
 
     public function handle(int $id)

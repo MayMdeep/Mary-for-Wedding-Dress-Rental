@@ -1,5 +1,5 @@
 <?php
-namespace App\Actions\Auth;
+namespace App\Actions\Auth\User;
 use App\Implementations\UserImplementation;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;

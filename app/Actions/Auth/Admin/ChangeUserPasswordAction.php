@@ -1,39 +1,33 @@
 <?php
 
-namespace App\Actions\Auth;
+namespace App\Actions\Auth\Admin;
 
-use App\Implementations\UserImplementation;
+use App\Implementations\AdminImplementation;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Illuminate\Http\Request;
 use App\Traits\Response;
 use Illuminate\Support\Facades\Hash;
 
-use App\Actions\UserPasswords\StoreUserPasswordAction;
-
-class ChangeUserPasswordAction
+class ChangeAdminPasswordAction
 {
     use AsAction;
     use Response;
-    private $user;
+    private $admin;
 
-    function __construct(UserImplementation $UserImplementation)
+    function __construct(AdminImplementation $AdminImplementation)
     {
-        $this->user = $UserImplementation;
+        $this->admin = $AdminImplementation;
     }
 
     public function handle(array $data)
     {
 
-        if (!Hash::check($data['current_password'], auth('sanctum')->user()->password)) {
+        if (!Hash::check($data['current_password'], auth('sanctum')->admin()->password)) {
             return [false,'password_incorrect'];
         }
-       else if(CheckIfPasswordRepeatedAction::run($data['password'])){
-            return[false,'old_password'];
-        }
         else {
-            StoreUserPasswordAction::run(['user_id'=>auth('sanctum')->user()->id,'password'=> $data['password']]);
             
-        return [true,$this->user->update(['password' => $data['password']], auth('sanctum')->user()->id)];
+        return [true,$this->admin->update(['password' => $data['password']], auth('sanctum')->admin()->id)];
         }
     }
     public function rules()
