@@ -48,7 +48,81 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[Active Logic](https://activelogic.com)**
 - **[byte5](https://byte5.de)**
 - **[OP.GG](https://op.gg)**
+# Wedding Dress Rental System
 
+## Project Overview
+This project is a web application for renting wedding dresses. It allows users to browse available dresses, view detailed information, make reservations, and manage their accounts. The application is built using Laravel and follows best practices for design patterns and code organization.
+
+## Features
+- **Homepage**: Display a list of available wedding dresses with images, names, and rental prices.
+- **Dress Detail Page**: Show detailed information about the selected dress, including description, size availability, and rental price.
+- **Reservation System**: Allow users to select a dress, choose a rental duration, and confirm the reservation. Users can view their reservation history on their account page.
+- **User Authentication**: Implement user authentication using Laravel's built-in authentication system. Users can register, log in, and log out.
+- **User Account Page**: Users can view and manage their reservations, edit profile information, and change passwords.
+- **Dynamic Specifications**: Admins can add and manage dress specifications and options dynamically.
+
+## Installation
+
+### Prerequisites
+- PHP 8.0 or higher
+- Composer
+- MySQL or any other supported database
+
+### Steps
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/wedding-dress-rental.git
+   cd wedding-dress-rental
+
+Install dependencies
+composer install
+
+Copy the .env file
+cp .env.example .env
+
+Generate application key
+php artisan key:generate
+
+Configure the .env file Update the database configuration in the .env file:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+
+Run migrations and seeders
+php artisan migrate --seed
+
+Serve the application
+php artisan serve
+
+API Endpoints
+Authentication
+Register: POST /api/register
+Login: POST /api/login
+Logout: POST /api/logout (requires authentication)
+Dresses
+List Dresses: GET /api/dresses
+View Dress Details: GET /api/dresses/{id}
+Create Dress: POST /api/dresses (requires authentication)
+Update Dress: PUT /api/dresses/{id} (requires authentication)
+Delete Dress: DELETE /api/dresses/{id} (requires authentication)
+Reservations
+Create Reservation: POST /api/reservations (requires authentication)
+View Reservations: GET /api/reservations (requires authentication)
+Cancel Reservation: DELETE /api/reservations/{id} (requires authentication)
+Design Patterns
+Action Design Pattern: Encapsulates specific tasks or actions within single classes, promoting modularity and maintainability.
+Repository Design Pattern: Abstracts the data layer and provides a clean API for data access and manipulation.
+Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+For any questions or inquiries, please contact your-email@example.com.
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
