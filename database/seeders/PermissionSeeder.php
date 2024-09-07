@@ -54,6 +54,18 @@ class PermissionSeeder extends Seeder
             [ 'name' => 'reservation.delete'],
             [ 'name' => 'reservation.edit'],
       
+            [ 'name' => 'specification.add'],
+            [ 'name' => 'specification.get'],
+            [ 'name' => 'specification.get-all'],
+            [ 'name' => 'specification.delete'],
+            [ 'name' => 'specification.edit'],
+
+            [ 'name' => 'specificationOption.add'],
+            [ 'name' => 'specificationOption.get'],
+            [ 'name' => 'specificationOption.get-all'],
+            [ 'name' => 'specificationOption.delete'],
+            [ 'name' => 'specificationOption.edit'],
+      
         ]);
     }
 }
