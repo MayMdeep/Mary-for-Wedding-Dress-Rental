@@ -31,7 +31,8 @@ class UpdateReservationAction
     public function rules(Request $request)
     {
         return [
-            'name' => ['unique:reservations,name,' . $request->route('id')],
+            'dress_id' => [ 'exists:dresses,id'],
+            'user_id' => [ 'exists:users,id'],
         ];
     }
     public function withValidator(Validator $validator, ActionRequest $request)
