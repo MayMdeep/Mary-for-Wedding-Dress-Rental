@@ -41,6 +41,9 @@ class ReservationImplementation implements Model
         if (array_key_exists('user_id', $data)) {
             $query = $query->where('user_id', $data['user_id']);
         }
+        if (array_key_exists('confirmed', $data)) {
+            $query = $query->where('confirmed', $data['confirmed']);
+        }
         if (array_key_exists('rental_duration', $data)) {
             $query = $query->where('rental_duration', $data['rental_duration']);
         }
@@ -123,6 +126,7 @@ class ReservationImplementation implements Model
 			'id'
 			,'user_id'
             ,'dress_id'
+            ,'confirmed'
             ,'rental_duration'
             ,'reservation_date'
             ,'created_at'

@@ -10,4 +10,13 @@ class Reservation extends Model
 {
     use HasFactory, SoftDeletes;
 
+public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function dress()
+    {
+        return $this->belongsTo(Dress::class, 'dress_id', 'id');
+    }
 }

@@ -76,6 +76,6 @@ class StoreDressAction
 
         $dress = $this->handle($request->all());
 
-        return $this->sendResponse($dress,'');
+        return $this->sendResponse($dress,'Dress Added Successfully');
     }
 }

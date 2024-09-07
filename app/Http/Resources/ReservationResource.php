@@ -18,10 +18,13 @@ class ReservationResource extends JsonResource
     {
         $result = [
             'id' => (int)$this->id,
-            'user_id'=>(int)$this->user_id
+            'user_id'=>(int)$this->user_id,
+            'user_name'=>(string)$this->user->name,
+            'dress_name'=>(string)$this->dress->name,
             ,'dress_id'=>(int) $this->dress_id
             ,'rental_duration'=> $this->rental_duration
             ,'reservation_date'=> (string)$this->reservation_date
+            ,'confirmed'=>(int)$this->confirmed
             ,'created_at'=> $this->created_at
 			,'updated_at'=> $this->updated_at
 			,'deleted_at'=> $this->deleted_at

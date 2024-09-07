@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('dress_id')->constrained()->onDelete('cascade');
             $table->integer('rental_duration');
+            $table->integer('confirmed')->default(0);
             $table->dateTime('reservation_date');
             $table->softDeletes();
             $table->timestamps();

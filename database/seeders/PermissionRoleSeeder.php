@@ -15,12 +15,12 @@ class PermissionRoleSeeder extends Seeder
         ];
 
         for ($i = 1; $i <= 50; $i++) {
-            if (array_key_exists($i, $user_permissionsIds)) {
+            //if (array_key_exists($i, $user_permissionsIds)) {
                 DB::table('permission_roles')->insert([
                     'permission_id' => $i,
                     'role_id' => 4,
                 ]);
-            }
+           // }
 
             DB::table('permission_roles')->insert([
                 'permission_id' => $i,
