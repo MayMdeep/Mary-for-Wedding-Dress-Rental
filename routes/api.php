@@ -1,46 +1,55 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Actions\Roles\GetRoleAction;
 use App\Actions\Users\GetUserAction;
 use Illuminate\Support\Facades\Route;
-use App\Actions\Admins\GetAdminAction;
+// roles
 use App\Actions\Roles\StoreRoleAction;
-use App\Actions\Dresses\GetDressAction;
 use App\Actions\Roles\DeleteRoleAction;
 use App\Actions\Roles\UpdateRoleAction;
+use App\Actions\Roles\GetRoleAction;
+use App\Actions\Roles\GetRoleListAction;
+// users
 use App\Actions\Users\DeleteUserAction;
 use App\Actions\Users\UpdateUserAction;
-use App\Actions\Roles\GetRoleListAction;
 use App\Actions\Users\GetUserListAction;
+//admins
 use App\Actions\Admins\DeleteAdminAction;
+use App\Actions\Admins\GetAdminAction;
 use App\Actions\Admins\UpdateAdminAction;
-use App\Actions\Dresses\StoreDressAction;
 use App\Actions\Admins\GetAdminListAction;
-use App\Actions\Auth\User\UserLoginAction;
+// dresses
 use App\Actions\Dresses\DeleteDressAction;
 use App\Actions\Dresses\UpdateDressAction;
+use App\Actions\Dresses\GetDressAction;
 use App\Actions\Dresses\GetDressListAction;
+use App\Actions\Dresses\StoreDressAction;
+
+use App\Actions\Auth\User\UserLoginAction;
 use App\Actions\Auth\Admin\AdminLoginAction;
-use App\Actions\Balances\StoreBalanceAction;
 use App\Actions\Auth\User\UserRegisterAction;
 use App\Actions\Auth\Admin\AdminRegisterAction;
-use App\Actions\Permissions\StorePermissionAction;
+// Reservations
 use App\Actions\Reservations\GetReservationAction;
-use App\Actions\Balances\GetBalanceListByUserAction;
-use App\Actions\Permissions\GetPermissionListAction;
 use App\Actions\Reservations\StoreReservationAction;
 use App\Actions\Reservations\DeleteReservationAction;
 use App\Actions\Reservations\UpdateReservationAction;
 use App\Actions\Reservations\GetReservationListAction;
-use App\Actions\Specifications\GetSpecificationAction;
+// permissions
 use App\Actions\Permissions\GetPermissionsByRoleAction;
-use App\Actions\Specifications\StoreSpecificationAction;
 use App\Actions\Permissions\AssignPermissionToRoleAction;
+use App\Actions\Permissions\AssignOnePermissionToRoleAction;
+use App\Actions\Permissions\GetPermissionListAction;
+use App\Actions\Permissions\StorePermissionAction;
+// specifications 
+
+use App\Actions\Specifications\StoreSpecificationAction;
 use App\Actions\Specifications\DeleteSpecificationAction;
 use App\Actions\Specifications\UpdateSpecificationAction;
 use App\Actions\Specifications\GetSpecificationListAction;
-use App\Actions\Permissions\AssignOnePermissionToRoleAction;
+use App\Actions\Specifications\GetSpecificationAction;
+
+// specification options
 use App\Actions\SpecificationOptions\GetSpecificationOptionAction;
 use App\Actions\SpecificationOptions\StoreSpecificationOptionAction;
 use App\Actions\SpecificationOptions\DeleteSpecificationOptionAction;
@@ -62,10 +71,6 @@ Route::group(['prefix'=>'roles'], function(){
     Route::post('{id}', UpdateRoleAction::class);
     Route::delete('{id}', DeleteRoleAction::class);
 });
-Route::group(['prefix'=>'balances'], function(){
-    Route::put('', StoreBalanceAction::class);
-    Route::get('', GetBalanceListByUserAction::class);
-});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('', UserLoginAction::class);
@@ -76,6 +81,13 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'auth/admins'], function () {
     Route::put('', AdminRegisterAction::class);
     Route::post('', AdminLoginAction::class);
+});
+Route::group(['prefix' => 'admins'], function () {
+    Route::get('', GetAdminListAction::class);
+    Route::get('{id}', GetAdminAction::class);
+    Route::put('', AdminRegisterAction::class);
+    Route::post('{id}', UpdateAdminAction::class);
+    Route::delete('{id}', DeleteAdminAction::class);
 });
 Route::group(['prefix'=>'users'], function(){
     Route::get('', GetUserListAction::class);
