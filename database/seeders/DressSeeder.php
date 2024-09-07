@@ -17,7 +17,7 @@ class DressSeeder extends Seeder
         $dresses = [
             [
                 'name' => 'Elegant White Dress',
-                'image' => 'images/White-Dress.png',
+                'image' => 'images/Vyk3fJApChKXLGZw9e7FdDo8rWLHGFjkyfwuG2mp.png',
                 'description' => 'A beautiful elegant white dress perfect for weddings.',
                 'quantity' => 10,
                 'rental_price' => 150.00,
@@ -28,7 +28,7 @@ class DressSeeder extends Seeder
             ],
             [
                 'name' => 'Classic Black Dress',
-                'image' => 'images/black-dress.png',
+                'image' => 'images/98IFCrCw1UatmMAPDCyeRaZOWKRQcs1Ke5yV7Jam.png',
                 'description' => 'A classic black dress suitable for formal events.',
                 'quantity' => 5,
                 'rental_price' => 120.00,

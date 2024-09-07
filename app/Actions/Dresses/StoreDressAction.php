@@ -10,6 +10,7 @@ use App\Http\Resources\DressResource;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
+use App\Actions\Uploads\UploadImageAction;
 use App\Implementations\DressImplementation;
 use App\Implementations\SpecificationImplementation;
 use App\Implementations\SpecificationOptionImplementation;
@@ -33,10 +34,7 @@ class StoreDressAction
     public function handle(array $data)
     {
         if (array_key_exists('file', $data)) {
-            $image = $data['file'];
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/photos', $imageName);
-            $data["image"] = 'photos/' . $imageName;
+            $data["image"]= UploadImageAction::run($data);
         }
         
 

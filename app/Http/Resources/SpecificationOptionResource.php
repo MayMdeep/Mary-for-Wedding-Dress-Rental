@@ -18,8 +18,8 @@ class SpecificationOptionResource extends JsonResource
     {
         $result = [
             'id' => (int)$this->id,
-            'specification_name'=>(string)$this->specification->name,
-            'specification_id'=>(int)$this->specification->id,
+            'specification_name'=>(string)$this->specification? $this->specification->name: "",
+            'specification_id'=>$this->specification? $this->specification->id:"",
             'name'=>(string) $this->name,
             'added_price'=>(int) $this->added_price
         ];

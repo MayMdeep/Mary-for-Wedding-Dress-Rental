@@ -20,7 +20,7 @@ class DressResource extends JsonResource
             'id' => (int)$this->id,
             'name' => (string) $this->name,
             'description' => (string) $this->description,
-            'image' => $this->image,
+            'image' => url($this->image),
             'availability' => (int)$this->availability,
             'rental_price' => (double)$this->rental_price,
             'options' => SpecificationOptionResource::collection($this->options),
