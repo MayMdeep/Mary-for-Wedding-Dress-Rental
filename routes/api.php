@@ -82,7 +82,7 @@ Route::group(['prefix' => 'auth/admins'], function () {
     Route::put('', AdminRegisterAction::class);
     Route::post('', AdminLoginAction::class);
 });
-Route::group(['prefix' => 'admins'], function () {
+Route::group(['prefix' => 'admins', 'middleware' => ['auth:sanctum']], function () {
     Route::get('', GetAdminListAction::class);
     Route::get('{id}', GetAdminAction::class);
     Route::put('', AdminRegisterAction::class);
